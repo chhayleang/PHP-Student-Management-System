@@ -44,6 +44,15 @@
                                         <option value="2">Female</option>
                                     </select>
                                 </div>
+                                <div class="d-flex flex-column mb-3">
+
+                                    <label for="imageSelect"
+                                        class="d-flex my-3 align-items-center justify-content-center text-center"
+                                        style="width:100px;height:100px;border:1.5px solid gray ; border-radius:10px">Upload
+                                        Profile</label>
+                                    <input type="file" class="form-control-file" id="imageSelect">
+
+                                </div>
 
                             </form>
                         </div>
@@ -59,7 +68,7 @@
         </div>
     </div>
 
-    <table class="table table-striped text-center ">
+    <table class="table table-striped text-center  ">
         <thead>
             <tr>
                 <th>ID</th>
@@ -76,15 +85,16 @@
         <tbody>
 
             <?php
-            $students = [42, 3, 4, 5, 5, 6, 6, 6, 35, 34, 345, 345, 34, 344, 4, 4, 4, 4];
+            $students = [42, 3, 4, 5, 34, 345, 345, 34, 344, 4, 4, 4, 4];
             foreach ($students as $student): ?>
                 <tr>
                     <td>
                         <?= $student ?>
                     </td>
                     <!-- problem here make it position centered -->
-                    <td>
-                        <div class="rounded-circle bg-secondary " style="width: 30px; height: 30px; ">
+                    <td class="d-flex justify-content-center p-3 ">
+                        <!-- <td> -->
+                        <div class="rounded-circle bg-secondary " style="width: 35px; height: 35px; ">
                         </div>
                     </td>
                     <td>Sok</td>
@@ -98,17 +108,17 @@
                                 <i class="bi bi-three-dots-vertical"></i>
 
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="action-dropdown">
+                            <ul class="dropdown-menu " aria-labelledby="action-dropdown">
                                 <li>
-                                    <a class="dropdown-item d-flex justify-content-center" href="#">
+                                    <a class="dropdown-item d-flex justify-content-between " href="#">
                                         Edit
-                                        <i class="bi bi-pencil ms-3"></i>
+                                        <i class="bi bi-pencil ms-3 text-success"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item d-flex justify-content-center" href="#">
+                                    <a class="dropdown-item d-flex justify-content-between" href="#">
                                         Delete
-                                        <i class="bi bi-trash ms-3"></i>
+                                        <i class="bi bi-trash ms-3 text-danger"></i>
                                     </a>
                                 </li>
 
@@ -122,8 +132,25 @@
             <?php endforeach; ?>
 
 
+
+
         </tbody>
     </table>
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active" aria-current="page">
+                <span class="page-link">2</span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 

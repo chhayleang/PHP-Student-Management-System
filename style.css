@@ -55,3 +55,8 @@ a:focus {
     text-decoration: none;
     transition: all 0.3s;
 }
+
+.dropdown .dropdown-menu {
+    max-width: 120px;
+    border-radius: 10px
+}
