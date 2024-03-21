@@ -2,6 +2,8 @@
 
 <!-- sidebar -->
 <?php include('includes/sidebar.php'); ?>
+<!--  include database connection -->
+<?php include('includes/db_connection.php'); ?>
 <!-- end sidebar -->
 <div class="container-fluid content">
     <?php include('includes/top_header.php'); ?>
@@ -27,22 +29,30 @@
                         </div>
                         <div class="modal-body">
                             <!-- form -->
-                            <form action="submit">
+                            <form action="controller.php" method="POST">
                                 <div class="mb-3">
                                     <label for="#fName">First name</label>
-                                    <input type="text" class="form-control" id="fName">
+                                    <input type="text" class="form-control" id="fName" name="fName">
                                 </div>
                                 <div class="mb-3">
                                     <label for="#lName">Last name</label>
-                                    <input type="text" class="form-control" id="lName">
+                                    <input type="text" class="form-control" id="lName" name="lName">
                                 </div>
                                 <div class="mb-3">
                                     <label for="#gender">Gender</label>
-                                    <select class="form-select form-select-md mb-3" aria-label="Large select example">
-                                        <option selected>Select gender</option>
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
+                                    <select name="gender-selection" class="form-select form-select-md mb-3"
+                                        aria-label="Large select example">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
                                     </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="#enroll_date">Enroll date</label>
+                                    <div class="container d-flex p-0">
+                                        <input class="form-control" placeholder="dd-mmm-yyyy" name="enrollDate" />
+                                        <button class="btn btn-outline-secondary bi bi-calendar3"
+                                            type=" button"></button>
+                                    </div>
                                 </div>
                                 <div class="d-flex flex-column mb-3">
 
@@ -53,13 +63,14 @@
                                     <input type="file" class="form-control-file" id="imageSelect">
 
                                 </div>
-
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" name="save_student" class="btn btn-primary">Save</button>
+                                </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save</button>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -85,11 +96,12 @@
         <tbody>
 
             <?php
-            $students = [42, 3, 4, 5, 34, 345, 345, 34, 344, 4, 4, 4, 4];
+            $query = "SELECT * FROM `student`";
+            $students = $conn->query($query);
             foreach ($students as $student): ?>
                 <tr>
                     <td>
-                        <?= $student ?>
+                        <?php echo $student["id"] ?>
                     </td>
                     <!-- problem here make it position centered -->
                     <td class="d-flex justify-content-center p-3 ">
@@ -97,10 +109,18 @@
                         <div class="rounded-circle bg-secondary " style="width: 35px; height: 35px; ">
                         </div>
                     </td>
-                    <td>Sok</td>
-                    <td>Sakda</td>
-                    <td>Male</td>
-                    <td>03-05-4023 </td>
+                    <td>
+                        <?php echo $student["first_name"] ?>
+                    </td>
+                    <td>
+                        <?php echo $student["last_name"] ?>
+                    </td>
+                    <td>
+                        <?php echo $student["gender"] ?>
+                    </td>
+                    <td>
+                        <?php echo $student["enroll_date"] ?>
+                    </td>
                     <td>
                         <div class="dropdown ">
                             <button class="btn  " type="button" id="action-dropdown" data-bs-toggle="dropdown">
@@ -129,7 +149,9 @@
 
                 </tr>
 
-            <?php endforeach; ?>
+            <?php endforeach;
+            $conn->close();
+            ?>
 
 
 

@@ -1,5 +1,5 @@
 <?php include('includes/header.php'); ?>
-
+<?php include('includes/db_connection.php'); ?>
 <!-- sidebar -->
 <?php include('includes/sidebar.php'); ?>
 <!-- end sidebar -->
