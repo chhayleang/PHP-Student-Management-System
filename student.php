@@ -1,12 +1,12 @@
-<?php include('includes/header.php'); ?>
+<?php include ('includes/header.php'); ?>
 
 <!-- sidebar -->
-<?php include('includes/sidebar.php'); ?>
+<?php include ('includes/sidebar.php'); ?>
 <!--  include database connection -->
-<?php include('includes/db_connection.php'); ?>
+<?php include ('includes/db_connection.php'); ?>
 <!-- end sidebar -->
 <div class="container-fluid content">
-    <?php include('includes/top_header.php'); ?>
+    <?php include ('includes/top_header.php'); ?>
 
     <!-- student content -->
     <div class="container-fluid py-3 d-flex justify-content-between ">
@@ -29,7 +29,7 @@
                         </div>
                         <div class="modal-body">
                             <!-- form -->
-                            <form action="controller.php" method="POST">
+                            <form action="save_student.php" method="POST" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label for="#fName">First name</label>
                                     <input type="text" class="form-control" id="fName" name="fName">
@@ -57,10 +57,13 @@
                                 <div class="d-flex flex-column mb-3">
 
                                     <label for="imageSelect"
-                                        class="d-flex my-3 align-items-center justify-content-center text-center"
-                                        style="width:100px;height:100px;border:1.5px solid gray ; border-radius:10px">Upload
-                                        Profile</label>
-                                    <input type="file" class="form-control-file" id="imageSelect">
+                                        class="d-flex my-3 align-items-center justify-content-center text-center selectedImage"
+                                        style="width:100px;height:100px;border:1.5px solid gray ; border-radius:10px">
+                                        <img id="selectedImage"
+                                            style="width:100px;height:100px;border:1.5px solid gray ; border-radius:10px">
+                                    </label>
+
+                                    <input type="file" class="form-control-file" id="imageSelect" name="profile">
 
                                 </div>
                                 <div class="modal-footer">
@@ -104,11 +107,13 @@
                         <?php echo $student["id"] ?>
                     </td>
                     <!-- problem here make it position centered -->
+
                     <td class="d-flex justify-content-center p-3 ">
-                        <!-- <td> -->
-                        <div class="rounded-circle bg-secondary " style="width: 35px; height: 35px; ">
+                        <div class="rounded-circle bg-secondary" style="width: 35px; height: 35px; overflow: hidden;">
+                            <?php echo '<img src="uploads/' . $student['profile'] . '" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" alt="Image">'; ?>
                         </div>
                     </td>
+
                     <td>
                         <?php echo $student["first_name"] ?>
                     </td>
@@ -177,4 +182,4 @@
 
 
 
-<?php include('includes/footer.php'); ?>
+<?php include ('includes/footer.php'); ?>
